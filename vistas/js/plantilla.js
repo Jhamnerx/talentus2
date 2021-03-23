@@ -85,18 +85,18 @@ $(".bootstrap-tagsinput").css({"padding":"6px",
 							   "width":"100%",
  							   "border-radius":"1px"})
 
-//Datepicker	
+//Datepicker
 $('.datepicker').datepicker({
 	format: 'dd/mm/yyyy',
   autoclose: true
 });
 
 /*=============================================
-CORRECCIÓN BOTONERAS OCULTAS BACKEND	
+CORRECCIÓN BOTONERAS OCULTAS BACKEND
 =============================================*/
 
 if(window.matchMedia("(max-width:767px)").matches){
-	
+
 	$("body").removeClass('sidebar-collapse');
 
 }else{
@@ -125,13 +125,13 @@ if(localStorage.getItem("botonera") == "inicio"){
 	$(".sidebar-menu li").removeClass("active");
 
 	$(".sidebar-menu li a[href='inicio']").parent().addClass("active")
-	
+
 }else{
 
 	$(".sidebar-menu li").removeClass("active");
 
 	$("a[href='"+localStorage.getItem("botonera")+"']").parent().parent().parent().addClass("active")
-	
+
 }
 
 var rutaOculta = $(".rutaOculta").val();
@@ -154,13 +154,13 @@ var rutaOculta = $(".rutaOculta").val();
 
    // Los eliminamos todos
    for (var i = 0; i < charEspeciales.length; i++) {
-   
+
        cadena = cadena.replace(new RegExp("\\" + charEspeciales[i], 'gi'), '');
-	   
-   }   
+
+   }
 
 
-   // Quitamos espacios y los sustituimos por - 
+   // Quitamos espacios y los sustituimos por -
    cadena = cadena.replace(/ /g,"-");
 
    // Quitamos acentos y "ñ". Fijate en que va sin comillas el primer parametro
@@ -197,7 +197,7 @@ var rutaOculta = $(".rutaOculta").val();
     })
     /**
      * SELECT 2
-     * 
+     *
      */
      $('.select2').select2()
 
@@ -290,10 +290,10 @@ $("#subirLogo").change(function(){
 
             }
           });
-      
+
         }
 
-        
+
       }
 
     })
@@ -310,7 +310,7 @@ SUBIR ICONO
 $("#subirIcono").change(function(){
 
   var imagenIcono = this.files[0];
-  
+
   /*=============================================
     VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
     =============================================*/
@@ -379,7 +379,7 @@ $("#subirIcono").change(function(){
       processData: false,
       success: function(respuesta){
         console.log(respuesta);
-        
+
         if(respuesta == 1){
 
           swal({
@@ -394,9 +394,9 @@ $("#subirIcono").change(function(){
 
             }
           });
-      
+
         }
-    
+
       }
 
     });
@@ -415,7 +415,7 @@ SUBIR BACKGROUND
 $("#subirBackground").change(function(){
 
   var imagenBackground = this.files[0];
-  
+
   /*=============================================
     VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
     =============================================*/
@@ -484,7 +484,7 @@ $("#subirBackground").change(function(){
       processData: false,
       success: function(respuesta){
         console.log(respuesta);
-        
+
         if(respuesta == 1){
 
           swal({
@@ -499,9 +499,9 @@ $("#subirBackground").change(function(){
 
             }
           });
-      
+
         }
-    
+
       }
 
     });
@@ -522,7 +522,7 @@ $("#subirContrato").change(function(){
   var imagenContrato = this.files[0];
 
   //console.log(imagenContrato);
-  
+
   /*=============================================
     VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
     =============================================*/
@@ -593,7 +593,7 @@ $("#subirContrato").change(function(){
       processData: false,
       success: function(respuesta){
         //console.log(respuesta);
-        
+
         if(respuesta == 1){
 
           swal({
@@ -608,9 +608,9 @@ $("#subirContrato").change(function(){
 
             }
           });
-      
+
         }
-    
+
       }
 
     });
@@ -626,7 +626,7 @@ SUBIR FONDO ACTA
 $("#subirActa").change(function(){
 
   var imagenActa = this.files[0];
-  
+
   /*=============================================
     VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
     =============================================*/
@@ -695,7 +695,7 @@ $("#subirActa").change(function(){
       processData: false,
       success: function(respuesta){
         console.log(respuesta);
-        
+
         if(respuesta == 1){
 
           swal({
@@ -710,9 +710,9 @@ $("#subirActa").change(function(){
 
             }
           });
-      
+
         }
-    
+
       }
 
     });
@@ -730,7 +730,7 @@ SUBIR FONDO CERTIFICADO
 $("#subirCertificado").change(function(){
 
   var imagenCertificado = this.files[0];
-  
+
   /*=============================================
     VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
     =============================================*/
@@ -799,7 +799,7 @@ $("#subirCertificado").change(function(){
       processData: false,
       success: function(respuesta){
         console.log(respuesta);
-        
+
         if(respuesta == 1){
 
           swal({
@@ -814,9 +814,9 @@ $("#subirCertificado").change(function(){
 
             }
           });
-      
+
         }
-    
+
       }
 
     });
@@ -838,7 +838,7 @@ SUBIR FONDO FIRMA
 $("#subirFirma").change(function(){
 
   var imagenFirma = this.files[0];
-  
+
   /*=============================================
     VALIDAMOS EL FORMATO DE LA IMAGEN SEA JPG O PNG
     =============================================*/
@@ -907,7 +907,7 @@ $("#subirFirma").change(function(){
       processData: false,
       success: function(respuesta){
         console.log(respuesta);
-        
+
         if(respuesta == 1){
 
           swal({
@@ -922,9 +922,9 @@ $("#subirFirma").change(function(){
 
             }
           });
-    
+
         }
-    
+
       }
 
     });
@@ -946,7 +946,7 @@ $("input[name='colorRedSocial']").on("ifChecked", function(){
 
   var iconos = $(".redSocial");
   var redes = ["facebook", "youtube","twitter","google-plus","instagram", "pinterest"];
-  
+
   if(color == "color"){
 
     colorRed = "Color";
@@ -1084,7 +1084,7 @@ $("#guardarRedesSociales").click(function(){
 
             }
           });
-    
+
       }
 
     }
@@ -1150,7 +1150,7 @@ $(".cambioEmpresa").change(function(){
       contentType: false,
       processData: false,
       success: function(respuesta){
-        
+
         if(respuesta == 1){
 
           swal({
@@ -1165,9 +1165,9 @@ $(".cambioEmpresa").change(function(){
 
             }
           });
-        
+
         }
-                
+
       }
 
     })
@@ -1175,3 +1175,46 @@ $(".cambioEmpresa").change(function(){
   })
 
 })
+
+
+
+
+
+
+
+  var tiempo = 0;
+  tiempo = setInterval(ciclo, 5000);
+
+
+  //clearInterval(tiempo);
+
+
+
+function ciclo (){
+
+  var datos = new FormData();
+  datos.append("notificacion", "notificacion");
+  
+  $.ajax({
+		url:"ajax/IngresasNotificacion.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(respuesta){
+
+      console.log(respuesta);
+
+		}
+
+	})
+ // $.get("ajax/tarea.ajax.php?verTareasNoleidas=1", function( data ) {
+ //
+ //    const tarea = JSON.parse(data);
+     //console.log("notificacion");
+ //
+ //
+ //  });
+
+}

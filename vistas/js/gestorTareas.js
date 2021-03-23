@@ -2,16 +2,16 @@
 CARGAR LA TABLA DINÁMICA DE TAREAS
 =============================================*/
 
-$.ajax({
-
-	url:"ajax/tablaHistorialTareas.ajax.php",
-	success:function(respuesta){
-		
-		console.log("respuesta", respuesta);
-
-	}
-
-})
+// $.ajax({
+//
+// 	url:"ajax/tablaHistorialTareas.ajax.php",
+// 	success:function(respuesta){
+//
+// 		console.log("respuesta", respuesta);
+//
+// 	}
+//
+// })
 
 var taskComplete = $(".tablaVerTareaCompletadas").DataTable({
 	 "ajax": "ajax/tablaTareas.ajax.php",
@@ -226,7 +226,7 @@ $('#modalCrearTarea .idVehiculo').html('');
 
 				//$('.editaractavehiculo').append(newOption).trigger('change');
 
-				
+
 
 			 }
 
@@ -277,7 +277,7 @@ $(".tablaVerTareaNoLeida").on("click", ".btnCancelarTarea", function(){
 					  	cache: false,
 				      	contentType: false,
 				      	processData: false,
-				      	success: function(respuesta){ 
+				      	success: function(respuesta){
 
 				      		console.log(respuesta);
 				      		iziToast.show({
@@ -297,9 +297,9 @@ $(".tablaVerTareaNoLeida").on("click", ".btnCancelarTarea", function(){
 
 				     		taskProgress.ajax.reload();
 				     		taskCancel.ajax.reload();
-				      	    
 
-				      	} 	 
+
+				      	}
 
 				  	});
 
@@ -346,7 +346,7 @@ $(".tablaVerTareaProgreso").on("click", ".btnCancelarTarea", function(){
 					  	cache: false,
 				      	contentType: false,
 				      	processData: false,
-				      	success: function(respuesta){ 
+				      	success: function(respuesta){
 
 				      		console.log(respuesta);
 				      		iziToast.show({
@@ -366,9 +366,9 @@ $(".tablaVerTareaProgreso").on("click", ".btnCancelarTarea", function(){
 
 				     		taskProgress.ajax.reload();
 				     		taskCancel.ajax.reload();
-				      	    
 
-				      	} 	 
+
+				      	}
 
 				  	});
 
@@ -411,7 +411,7 @@ $(".tablaVerTareaProgreso").on("click", ".btnTerminarTarea", function(){
 					  	cache: false,
 				      	contentType: false,
 				      	processData: false,
-				      	success: function(respuesta){ 
+				      	success: function(respuesta){
 
 				      		//console.log(respuesta);
 				      		iziToast.show({
@@ -431,13 +431,13 @@ $(".tablaVerTareaProgreso").on("click", ".btnTerminarTarea", function(){
 
 				     		taskProgress.ajax.reload();
 				     		taskCancel.ajax.reload();
-				      	    
 
-				      	} 	 
+
+				      	}
 
 				  	});
 
-				} 
+				}
 		});
 
 
@@ -472,7 +472,7 @@ $('#modalCrearTarea .idVehiculo').on('select2:select', function (e) {
 			var datos = new FormData();
 		 	datos.append("editarIdLinea", idLinea);
 
-			
+
 			$.ajax({
 
 				url:"ajax/lineas.ajax.php",

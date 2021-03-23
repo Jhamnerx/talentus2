@@ -2,22 +2,23 @@
 CARGAR LA TABLA DINÁMICA DE COBROS
 =============================================*/
 
-$.ajax({
-
- url:"ajax/tablaCobros.ajax.php",
- success:function(respuesta){
-    
-   console.log("respuesta", respuesta);
-
- }
-
-})
+// $.ajax({
+//
+//  url:"ajax/tablaCobros.ajax.php",
+//  success:function(respuesta){
+//
+//    console.log("respuesta", respuesta);
+//
+//  }
+//
+// })
 
 var tablaCobros = $(".tablaCobranzas").DataTable({
     "ajax": "ajax/tablaCobros.ajax.php",
     "deferRender": true,
     "retrieve": true,
     "processing": true,
+	  "iDisplayLength": 20,
     "language": {
 
         "sProcessing":     "Procesando...",
@@ -130,7 +131,7 @@ $(".btnAgregarCobro").on("click", function(){
 /*=============================================
 EDITAR REGISTRO
 =============================================*/
-  
+
 $(".tablaCobranzas tbody").on("click", ".btnEditarCobro", function(){
 
   var idCobro = $(this).attr("idCobro");
@@ -202,7 +203,7 @@ $(".tablaCobranzas tbody").on("click", ".btnEditarCobro", function(){
 /*=============================================
 MARCAR COMO PAGADO
 =============================================*/
-  
+
 $(".tablaCobranzas tbody").on("click", ".btnPagarCobro", function(){
 
   var idCobro = $(this).attr("idCobro");
@@ -272,7 +273,7 @@ $(".tablaCobranzas tbody").on("click", ".btnPagarCobro", function(){
 /*=============================================
 VER INFO REGISTRO
 =============================================*/
-  
+
 $(".tablaCobranzas tbody").on("click", ".btnVerCobro ", function(){
   $(".tablaRegistro .listaRegistro").html('');
 
@@ -428,7 +429,7 @@ $(".tablaCobranzas tbody").on("click", ".btnVerCobro ", function(){
     var table1 = $(this).parent().parent().parent();
     var table2 = $(this).parent().parent();
     var verTable = $(table1).data('vertable')+"";
-    var column = $(this).data('column') + ""; 
+    var column = $(this).data('column') + "";
 
     $(table2).find("."+column).addClass('hov-column-'+ verTable);
     $(table1).find(".row100.head ."+column).addClass('hov-column-head-'+ verTable);
@@ -439,12 +440,12 @@ $(".tablaCobranzas tbody").on("click", ".btnVerCobro ", function(){
     var table1 = $(this).parent().parent().parent();
     var table2 = $(this).parent().parent();
     var verTable = $(table1).data('vertable')+"";
-    var column = $(this).data('column') + ""; 
+    var column = $(this).data('column') + "";
 
     $(table2).find("."+column).removeClass('hov-column-'+ verTable);
     $(table1).find(".row100.head ."+column).removeClass('hov-column-head-'+ verTable);
   });
-    
+
 
 $(".tablaCobranzas tbody").on("click", ".btnEliminarCobro", function(){
 
@@ -463,7 +464,7 @@ $(".tablaCobranzas tbody").on("click", ".btnEliminarCobro", function(){
       cache: false,
         contentType: false,
         processData: false,
-        success: function(respuesta){ 
+        success: function(respuesta){
 
           tablaCobros.ajax.reload();
 
@@ -483,7 +484,7 @@ $(".tablaCobranzas tbody").on("click", ".btnEliminarCobro", function(){
               }
       });
 
-        }    
+        }
 
     });
 
@@ -558,4 +559,3 @@ const formatearFecha = fecha => {
     //return `${fecha.getFullYear()}-${(mes < 10 ? '0' : '').concat(mes)}-${(dia < 10 ? '0' : '').concat(dia)}`;
     return `${(dia < 10 ? '0' : '').concat(dia)}-${(mes < 10 ? '0' : '').concat(mes)}-${fecha.getFullYear()}`
 };
-

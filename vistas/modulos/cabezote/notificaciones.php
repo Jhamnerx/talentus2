@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 $notificaciones = ControladorNotificaciones::ctrMostrarNotificaciones(null, null);
@@ -113,14 +113,14 @@ NOTIFICACIONES
 
 <!-- notifications-menu -->
 <li class="dropdown notifications-menu">
-	
+
 	<!-- dropdown-toggle -->
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		
+
 		<i class="fa fa-bell-o"></i>
-		
+
 		<span class="label label-warning"><?php echo count($notificaciones); ?></span>
-	
+
 	</a>
 	<!-- dropdown-toggle -->
 
@@ -137,7 +137,7 @@ NOTIFICACIONES
 				<?php
 
 
-					
+
 
 					//$totalNotificaciones = $notificaciones["nuevosUsuarios"] + $notificaciones["nuevasVentas"] + $notificaciones["nuevasVisitas"];
 
@@ -146,87 +146,95 @@ NOTIFICACIONES
 					foreach ($notificaciones as $key => $value) {
 
 						$cobros = ModeloCobros::mdlMostrarCobros("cobros", "id", $value["idCobro"]);
-						$cliente = ModeloPersona::mdlMostrarPersona("persona", "id", $cobros["empresa"], 1);
-						
-				        if ($cliente["apellido"] == "null") {
-				            $nombre_cliente = $cliente["nombre"];
 
-				        }else{
+            if ($cobros) {
+              $cliente = ModeloPersona::mdlMostrarPersona("persona", "id", $cobros["empresa"], 1);
 
-				            $nombre_cliente = $cliente["nombre"]. " ".$cliente["apellido"];
-				        }
+                  if ($cliente["apellido"] == "null") {
+                      $nombre_cliente = $cliente["nombre"];
 
-						$fechaInicial = $cobros["fechaVen"];
-				        $fechaFinal = date("Y/m/d");
+                  }else{
 
-				        $dias = Utiles::diferenciaFechas($fechaInicial, $fechaFinal);
-				        //var_dump($dias);
+                      $nombre_cliente = $cliente["nombre"]. " ".$cliente["apellido"];
+                  }
 
-				        // if ($dias < 0) {
-				        // 	$diasP =abs($dias);
-				        // 	echo "pasaron ".$diasP;
-				        // }
-						if ($dias == 0) {
-				          
+                  $fechaInicial = $cobros["fechaVen"];
+                  $fechaFinal = date("Y/m/d");
 
-				          $notifi = ModeloNotificaciones::mdlActualizarNotificacion("notificaciones", "descripcion", "vencido", "id", $value["id"]);
+                  $dias = Utiles::diferenciaFechas($fechaInicial, $fechaFinal);
+                  //var_dump($dias);
 
-				        }
+                  // if ($dias < 0) {
+                  // 	$diasP =abs($dias);
+                  // 	echo "pasaron ".$diasP;
+                  // }
+                  if ($dias == 0) {
 
 
-
-				        /**
-				         * MOSTRAR NOTIFICACIONES EN CAMPANA
-				         */
-
-				        if ($value["descripcion"] == "vencido") {
+                    $notifi = ModeloNotificaciones::mdlActualizarNotificacion("notificaciones", "descripcion", "vencido", "id", $value["id"]);
+                    if ($cobros["estado"] != 0) {
+                      $estado = ModeloCobros::mdlActualizarEstadoCobros("cobros", "estado", 3, "id", $cobros["id"]);
+                    }
 
 
-					        echo '<li class="notificacion" notificacion="'.$value["id"].'">
-									<a href="notificaciones" style="color: red;" class="actualizarNotificaciones" item="nuevosUsuarios">
-									
-										<i class="fa fa-car text-aqua"></i> Plan Vencido '.$nombre_cliente.'
-									
-									</a>
-
-								</li>';
-				        }else{
+                  }
 
 
-					        echo '<li class="notificacion" notificacion="'.$value["id"].'">
-									<a href="notificaciones" class="actualizarNotificaciones" item="nuevosUsuarios">
-									
-										<i class="fa fa-car text-aqua"></i> Plan por vencer '.$nombre_cliente.' ('.$dias.' dias restantes)
-									
-									</a>
 
-								</li>';
-				        }
+                  /**
+                   * MOSTRAR NOTIFICACIONES EN CAMPANA
+                   */
+
+                  if ($value["descripcion"] == "vencido") {
 
 
-					}
+                    echo '<li class="notificacion" notificacion="'.$value["id"].'">
+                    <a href="notificaciones" style="color: red;" class="actualizarNotificaciones" item="nuevosUsuarios">
+
+                      <i class="fa fa-car text-aqua"></i> Plan Vencido '.$nombre_cliente.'
+
+                    </a>
+
+                  </li>';
+                  }else{
+
+
+                    echo '<li class="notificacion" notificacion="'.$value["id"].'">
+                    <a href="notificaciones" class="actualizarNotificaciones" item="nuevosUsuarios">
+
+                      <i class="fa fa-car text-aqua"></i> Plan por vencer '.$nombre_cliente.' ('.$dias.' dias restantes)
+
+                    </a>
+
+                  </li>';
+                  }
+
+
+            }
+            }
+
 
 				?>
 
 
 				<!-- ventas -->
 <!-- 				<li>
-				
+
 					<a href="ventas" class="actualizarNotificaciones" item="nuevasVentas">
-					
+
 						<i class="fa fa-shopping-cart text-aqua"></i> 1 nuevas ventas
-					
+
 					</a>
 
 				</li> -->
-				
+
 				<!-- visitas -->
 <!-- 				<li>
-				
+
 					<a href="visitas" class="actualizarNotificaciones" item="nuevasVisitas">
-					
+
 						<i class="fa fa-map-marker text-aqua"></i> 2 nuevas visitas
-					
+
 					</a>
 
 				</li> -->
@@ -240,13 +248,13 @@ NOTIFICACIONES
 	<!--dropdown-menu -->
 
 </li>
-<!-- notifications-menu -->	
+<!-- notifications-menu -->
 
 
 <!--=====================================
 TAREAS MENU
 ======================================-->
-<?php 
+<?php
 
 $tareas = ControladorTareas::ctrMostrarTareas("leido", "0");
 
@@ -260,7 +268,7 @@ $tareas = ControladorTareas::ctrMostrarTareas("leido", "0");
 	</a>
 
 	<ul class="dropdown-menu">
-		<?php 
+		<?php
 		if (count($tareas) >2) {
 			echo '<li class="header">Tienes 1 Tarea</li>';
 		}else{
@@ -269,15 +277,15 @@ $tareas = ControladorTareas::ctrMostrarTareas("leido", "0");
 		}
 
 		 ?>
-	 	
+
 
 	  	<li>
 
 		    <ul class="menu">
 
-		    	<?php 
+		    	<?php
 
-		    	
+
 
 		    	foreach ($tareas as $key => $value) {
 		    		$vehiculo = ControladorVehiculos::ctrMostrarVehiculos("id", $value['vehiculo']);
@@ -295,7 +303,7 @@ $tareas = ControladorTareas::ctrMostrarTareas("leido", "0");
 			          $tipo = "<p>Mantenimiento del dispositivo GPS del vehiculo ".$vehiculo["placa"].",</p> <p>Fecha y Hora del Mantenimiento ".$fecha." ".$value['hora']."</p>";
 
 
-			        }       
+			        }
 			         if (strtolower($value['tipo']) ==strtolower("cambio SIM")) {
 
 
@@ -332,7 +340,7 @@ $tareas = ControladorTareas::ctrMostrarTareas("leido", "0");
 </li>
 
 
-<?php 
+<?php
 
 }
  ?>

@@ -88,17 +88,17 @@ class ControladorUsuarios{
 					$mail->addAddress($_POST["regEmail"]);
 
 					$mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
-						
+
 						<center>
-							
+
 							<img style="padding:20px; width:10%" src="'.$url.'vistas/img/plantilla/logo.png">
 
 						</center>
 
 						<div style="position:relative; margin:auto; width:600px; background:white; padding:20px">
-						
+
 							<center>
-							
+
 							<img style="padding:20px; width:15%" src="http://talentustechnology.com/talentus/vistas/img/ /email.png">
 
 							<h3 style="font-weight:100; color:#999">GRACIAS POR REGISTRARSE EN EL SISTEMA</h3>
@@ -129,7 +129,7 @@ class ControladorUsuarios{
 
 					if(!$envio){
 
-						echo '<script> 
+						echo '<script>
 
 							swal({
 								  title: "¡ERROR!",
@@ -150,7 +150,7 @@ class ControladorUsuarios{
 
 					}else{
 
-						echo '<script> 
+						echo '<script>
 
 							swal({
 								  title: "¡OK!",
@@ -175,7 +175,7 @@ class ControladorUsuarios{
 
 			}else{
 
-				echo '<script> 
+				echo '<script>
 
 						swal({
 							  title: "¡ERROR!",
@@ -206,13 +206,13 @@ class ControladorUsuarios{
 	=============================================*/
 
 	static public function ctrCrearUsuario($datos){
-		
+
 		/*=============================================
 		GUARDAR FOTO
-		=============================================*/	
+		=============================================*/
 		$tabla = "usuarios";
 		if ($datos["fotoUsuario"] != "data:,") {
-		
+
 			list($ancho, $alto) = getimagesize($datos["fotoUsuario"]);
 
 
@@ -225,10 +225,10 @@ class ControladorUsuarios{
 			$ruta = "../vistas/img/usuarios/".strtolower($datos["loginUsuario"])."/".$datos["loginUsuario"].".png";
 			$ruta2 = "/vistas/img/usuarios/".strtolower($datos["loginUsuario"]);
 
-			if (!file_exists($ruta)) {		
+			if (!file_exists($ruta)) {
 				echo "no existe";
 				mkdir("../vistas/img/usuarios/".strtolower($datos["loginUsuario"]), 0700);
-				
+
 			}
 
 			$origen = imagecreatefrompng($datos["fotoUsuario"]);
@@ -264,7 +264,7 @@ class ControladorUsuarios{
 	static public function ctrEditarUsuario(){
 
 		if (isset($_POST["editarIdUsuario"])) {
-			
+
 			$datos = array('id' => $_POST["editarIdUsuario"],
 						   'nombre'=> $_POST["editarNombreUsuario"],
 						   'apellido' => $_POST["editarApellidoUsuario"],
@@ -321,7 +321,7 @@ class ControladorUsuarios{
 
 			$item = "login";
 		}
-		
+
 		$valor = $datos["login"];
 		$tabla = "usuarios";
 
@@ -344,7 +344,7 @@ class ControladorUsuarios{
 
 					/**
 					 * AÑDIR NOTIFICACION
-					 */	
+					 */
 				    $cobros = ModeloCobros::mdlMostrarCobros("cobros", null, null);
 
 
@@ -354,9 +354,9 @@ class ControladorUsuarios{
 
 				        $dias = Utiles::diferenciaFechas($fechaInicial, $fechaFinal);
 
-			       
+
 				        if ($dias <= 10 AND $dias >= 0) {
-				          
+
 				          $datos = array("tipo"=>"vencimiento",
 				           "descripcion"=>"porvencer",
 				           "idCobro"=>$cobros[$i]["id"],
@@ -367,14 +367,14 @@ class ControladorUsuarios{
 
 				          if ($cobros[$i]["estado"] != 0) {
 				          	$notifi = ControladorNotificaciones::ctrIngresarNotificacion($datos);
-				          	
+
 				          	$estado = ModeloCobros::mdlActualizarEstadoCobros("cobros", "estado", 1, "id", $cobros[$i]["id"]);
 				          }
-				          
+
 
 				        }
 
-			      	}
+			      }
 					session_start();
 
 					$_SESSION["validarSesion"] = "ok";
@@ -386,7 +386,7 @@ class ControladorUsuarios{
 					$_SESSION["num_documento"] = $respuesta["num_documento"];
 					$_SESSION["direccion"] = $respuesta["direccion"];
 					$_SESSION["telefono"] = $respuesta["telefono"];
-					
+
 					$_SESSION["ciudad"] = $respuesta["ciudad"];
 					$_SESSION["foto"] = $respuesta["foto"];
 					$_SESSION["estado"] = $respuesta["foto"];
